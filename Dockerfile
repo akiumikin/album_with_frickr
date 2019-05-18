@@ -5,9 +5,12 @@ ENV WORKSPACE=/usr/local/src
 ENV BUNDLE_PATH=$WORKSPACE/vendor/bundle
 
 # install bundler.
-RUN apt update && \
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
+    apt update && \
     apt install -y less build-essential nodejs && \
     gem install bundler && \
+    npm install n -g && \
+    n 8.15.1 && \
     apt clean
 
 # create user and group.
