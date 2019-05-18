@@ -11,6 +11,7 @@ RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
     gem install bundler && \
     npm install n -g && \
     n 8.15.1 && \
+    npm install -g yarn && \
     apt clean
 
 # create user and group.
