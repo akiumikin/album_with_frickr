@@ -1,0 +1,5 @@
+current directory: /usr/local/src/vendor/bundle/gems/childprocess-1.0.1/ext
+/usr/local/bin/ruby mkrf_conf.rb
+
+current directory: /usr/local/src/vendor/bundle/gems/childprocess-1.0.1/ext
+/usr/local/bin/ruby -rrubygems /usr/local/src/vendor/bundle/gems/rake-12.3.2/exe/rake RUBYARCHDIR\=/usr/local/src/vendor/bundle/extensions/x86_64-linux/2.6.0/childprocess-1.0.1 RUBYLIBDIR\=/usr/local/src/vendor/bundle/extensions/x86_64-linux/2.6.0/childprocess-1.0.1

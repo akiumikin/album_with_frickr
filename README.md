@@ -22,3 +22,16 @@ npm 6.4.1
 ### コード側仕様  
 -アルバムの作成、更新フォームはコンポーネントととして作成し同一のjsコードで作成、更新の切り替えをできるようしてください  
 -flickr(フリー画像サイト)からAPIを使用して検索・取得してくださいAPI(frickr)を叩く処理に関してはReact側で実装してください。フロント側は全てReactで実装をしてください。
+
+
+### 環境立ち上げ
+
+・Dockerfileとdocker-compose.ymlを用意する（リポジトリ内を参照）
+
+```
+起動：docker-compose up -d
+（仮にメインプロセスを落としたらもう一回する）
+停止：docker-compose down
+
+attachから抜ける：ctrl+pの後にctrl+c
+```

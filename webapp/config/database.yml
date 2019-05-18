@@ -8,13 +8,13 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 10
-  username: root
-  password:
-  host: localhost
+  username: app
+  password: app
+  host: mysql
 
 development:
   <<: *default
-  database: album_with_frickr_local
+  database: app
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
