@@ -4,9 +4,11 @@ class AlbumsController < ApplicationController
   # GET /albums
   # GET /albums.json
   def index
-    @albums = Album.all
-
     render template: 'layouts/application', layout: false
+  end
+
+  def list
+    render json: Album.all
   end
 
   # GET /albums/1
