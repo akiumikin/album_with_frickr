@@ -21,13 +21,24 @@ export const deleteAlbumPayload = album => ({
   }
 });
 
-export function getAlbum() {
+export function getAlbums() {
   return async dispatch => {
     try {
       const res = await request.get('/_/albums/list');
       dispatch(setAlbumsPayload(res.body));
     } catch (err) {
       console.log('アルバム一覧の取得でエラーが発生')
+    }
+  };
+}
+
+export function getAlbum(id) {
+  return async dispatch => {
+    try {
+      const res = await request.get(`/_/albums/${id}`);
+      dispatch(setAlbumsPayload(res.body));
+    } catch (err) {
+      console.log(`ID:${id} のアルバムの取得でエラーが発生`)
     }
   };
 }

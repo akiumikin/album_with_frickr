@@ -8,7 +8,7 @@ export default class Album extends Component {
   }
 
   componentDidMount() {
-    this.props.getAlbum();
+    this.props.getAlbums();
   }
 
   albumDelete(id) {
