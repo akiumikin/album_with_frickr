@@ -23,6 +23,10 @@ export default class Album extends Component {
     this.setState({name: event.target.value})
   }
 
+  moveToDetail(id) {
+    location.href=`/${id}`;
+  }
+
   albumList() {
     const albums = this.props.albums;
     const albumList = albums.map((album) =>
@@ -37,6 +41,16 @@ export default class Album extends Component {
       <tr key={album.id} className="p-detailTable__underLine">
         <td>{album.id}</td>
         <td>{album.name}</td>
+        <td>
+          <button onClick={() => this.moveToDetail(album.id)} className="c-btn__base">
+            詳細
+          </button>
+        </td>
+        {/* <td>
+          <button onClick={() => this.moveToDetail(album.id)} className="c-btn__base">
+            編集
+          </button>
+        </td> */}
         <td>
           {/* ToDo 削除確認をするポップアップかモーダルを設定する */}
           {/* https://github.com/akiumikin/album_with_frickr/issues/15 */}
