@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import AlbumShow from '../components/AlbumShowComponent';
 import { getAlbum } from '../actions/Album';
+import { deleteAlbumImage } from '../actions/AlbumImage'
 
 function mapStateToProps(state) {
   return {
@@ -12,6 +13,9 @@ function mapDispatchToProps(dispatch) {
   return {
     getAlbum(id) {
       dispatch(getAlbum(id));
+    },
+    deleteImage(id) {
+      dispatch(deleteAlbumImage(id));
     }
   };
 }
