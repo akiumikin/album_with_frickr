@@ -36,4 +36,4 @@ npm 6.4.1
 attachから抜ける：ctrl+pの後にctrl+c
 ```
 
-・初めの起動時にはmountディレクトリにnode_moduleがいないから、node_module入れるところは必要かも
+・初めの起動時にはmountしたディレクトリにnode_moduleがいないから、node_module入れるところは必要かも
