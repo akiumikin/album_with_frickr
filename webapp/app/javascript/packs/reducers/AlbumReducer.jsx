@@ -12,7 +12,7 @@ export default function Reducer(state = initialState, action) {
     case 'SET_ALBUM':
       return {
         ...state,
-        albums: action.payload.albums
+        album: action.payload.album
       };
     case 'DELETE_ALBUM':
       return {albums: state.albums.filter(album => album.id != action.payload.album.id)};
