@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  before_action :set_album, only: [:show, :edit, :update, :destroy]
+  before_action :set_album, only: [:edit, :update, :destroy]
 
   # GET /albums
   # GET /albums.json
@@ -14,7 +14,10 @@ class AlbumsController < ApplicationController
   # GET /albums/1
   # GET /albums/1.json
   def show
-    render json: @album
+    album = Album.includes(:album_images).find(params[:id])
+    return_hash = album.attributes
+    return_hash['album_images'] = album.album_images
+    render json: return_hash
   end
 
   # POST /albums

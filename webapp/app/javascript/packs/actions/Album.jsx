@@ -7,6 +7,13 @@ export const setAlbumsPayload = albums => ({
   }
 });
 
+export const setAlbumPayload = album => ({
+  type: 'SET_ALBUM',
+  payload: {
+    album
+  }
+});
+
 export const addAlbumPayload = album => ({
   type: 'ADD_ALBUM',
   payload: {
@@ -36,7 +43,7 @@ export function getAlbum(id) {
   return async dispatch => {
     try {
       const res = await request.get(`/_/albums/${id}`);
-      dispatch(setAlbumsPayload(res.body));
+      dispatch(setAlbumPayload(res.body));
     } catch (err) {
       console.log(`ID:${id} のアルバムの取得でエラーが発生`)
     }
