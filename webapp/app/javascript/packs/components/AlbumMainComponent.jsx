@@ -10,12 +10,36 @@ export default class Album extends Component {
     this.props.getAlbum();
   }
 
-  render() {
+  albumDelete(id) {
+    this.props.deleteAlbum(id);
+  }
+
+  albumList() {
     const albums = this.props.albums;
     const albumList = albums.map((album) =>
-      <AlbumRow key={album.id} album={album} />
+      this.albumRow(album)
     );
 
+    return albumList
+  }
+
+  albumRow(album) {
+    return (
+      <tr key={album.id} className="p-detailTable__underLine">
+        <td>{album.id}</td>
+        <td>{album.name}</td>
+        <td>
+          {/* ToDo 削除確認をするポップアップかモーダルを設定する */}
+          {/* https://github.com/akiumikin/album_with_frickr/issues/15 */}
+          <button onClick={() => this.albumDelete(album.id)} className="c-btn__base">
+            ×
+          </button>
+        </td>
+      </tr>
+    );
+  }
+
+  render() {
     return (
       <div className="c-container">
         <section className="c-container__wrap">
@@ -28,10 +52,12 @@ export default class Album extends Component {
               <tr className="p-detailTable__head">
                 <th>id</th>
                 <th>名前</th>
+                {/* 下の１行は削除枠を確保のため */}
+                <th></th>   
               </tr>
             </thead>
             <tbody>
-              {albumList}
+              {this.albumList()}
             </tbody>
           </table>
         </div>
@@ -40,15 +66,6 @@ export default class Album extends Component {
     );
   }
 }
-
-const AlbumRow = (prop) => {
-    return (
-      <tr className="p-detailTable__underLine">
-        <td>{prop.album.id}</td>
-        <td>{prop.album.name}</td>
-      </tr>
-    );
-  };
 
 Album.propTypes = {
   // ToDo arrayの中身の型定義

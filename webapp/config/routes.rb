@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   root to: 'albums#index'
 
   get '/_/albums/list', to: 'albums#list'
+  delete '/_/albums/:id', to: 'albums#destroy'
 end
