@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 export default class Album extends Component {
   constructor() {
     super();
+    this.state = {name: ''};
   }
 
   componentDidMount() {
@@ -12,6 +13,14 @@ export default class Album extends Component {
 
   albumDelete(id) {
     this.props.deleteAlbum(id);
+  }
+
+  albumCreate(name) {
+    this.props.createAlbum(name)
+  }
+
+  onChangeAlbumName(event) {
+    this.setState({name: event.target.value})
   }
 
   albumList() {
@@ -47,20 +56,33 @@ export default class Album extends Component {
             <h2 className="c-heading">アルバム一覧</h2>
           </div>
           <div>
-          <table className="p-detailTable">
-            <thead>
+            <table className="p-detailTable">
+              <thead>
               <tr className="p-detailTable__head">
                 <th>id</th>
                 <th>名前</th>
-                {/* 下の１行は削除枠を確保のため */}
-                <th></th>   
+                  {/* 下の１行は削除枠を確保のため */}
+                  <th></th>   
               </tr>
-            </thead>
-            <tbody>
+              </thead>
+              <tbody>
               {this.albumList()}
-            </tbody>
-          </table>
-        </div>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <div>
+              アルバム名：
+              <input
+                type='text'
+                value={this.state.name}
+                onChange={(event => this.onChangeAlbumName(event))}
+              />
+            </div>
+            <button onClick={() => this.albumCreate(this.state.name)} className="c-btn__base">
+              アルバム作成
+            </button>
+          </div>
         </section>
       </div>
     );

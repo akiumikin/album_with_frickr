@@ -11,6 +11,8 @@ export default function Reducer(state = initialState, action) {
       };
     case 'DELETE_ALBUM':
       return {albums: state.albums.filter(album => album.id != action.payload.album.id)};
+    case 'ADD_ALBUM':
+      return {albums: state.albums.concat(action.payload.album)}
     default:
       return state;
   }
