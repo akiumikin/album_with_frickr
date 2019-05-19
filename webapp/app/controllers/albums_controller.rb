@@ -11,6 +11,12 @@ class AlbumsController < ApplicationController
     render json: Album.all
   end
 
+  # GET /albums/1
+  # GET /albums/1.json
+  def show
+    render json: @album
+  end
+
   # POST /albums
   # POST /albums.json
   def create
@@ -38,11 +44,6 @@ class AlbumsController < ApplicationController
 
 
   # ↓未使用（これから使う）
-
-  # GET /albums/1
-  # GET /albums/1.json
-  def show
-  end
 
   # GET /albums/1/edit
   def edit
