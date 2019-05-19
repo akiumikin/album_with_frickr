@@ -11,6 +11,10 @@ export default class AlbumShow extends Component {
     this.props.getAlbum(id);
   }
 
+  imageDelete(image_id) {
+    this.props.deleteImage(image_id);
+  }
+
   imageList() {
     const images = this.props.album && this.props.album.album_images || [];
     const imageList = images.map((image) =>
@@ -24,6 +28,11 @@ export default class AlbumShow extends Component {
     return (
       <div key={image.id} className="p-detailTable__underLine">
         <img src={image.url} width='350px'/>
+        {/* ToDo 削除確認をするポップアップかモーダルを設定する */}
+        {/* https://github.com/akiumikin/album_with_frickr/issues/15 */}
+        <button onClick={() => this.imageDelete(image.id)} className="c-btn__base">
+          ×
+        </button>
       </div>
     );
   }
