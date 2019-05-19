@@ -11,11 +11,29 @@ class AlbumsController < ApplicationController
     render json: Album.all
   end
 
+  # POST /albums
+  # POST /albums.json
+  def create
+    @album = Album.create!(album_params)
+    render json: @album
+  end
+
   # DELETE /albums/1
   # DELETE /albums/1.json
   def destroy
     @album.destroy
     render json: @album
+  end
+
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_album
+    @album = Album.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def album_params
+    params.require(:album).permit(:name)
   end
 
 
@@ -26,29 +44,8 @@ class AlbumsController < ApplicationController
   def show
   end
 
-  # GET /albums/new
-  def new
-    @album = Album.new
-  end
-
   # GET /albums/1/edit
   def edit
-  end
-
-  # POST /albums
-  # POST /albums.json
-  def create
-    @album = Album.new(album_params)
-
-    respond_to do |format|
-      if @album.save
-        format.html { redirect_to @album, notice: 'Album was successfully created.' }
-        format.json { render :show, status: :created, location: @album }
-      else
-        format.html { render :new }
-        format.json { render json: @album.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /albums/1
@@ -64,15 +61,4 @@ class AlbumsController < ApplicationController
       end
     end
   end
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_album
-      @album = Album.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def album_params
-      params.require(:album).permit(:name)
-    end
 end

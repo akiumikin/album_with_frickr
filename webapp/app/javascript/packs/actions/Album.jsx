@@ -7,6 +7,13 @@ export const setAlbumsPayload = albums => ({
   }
 });
 
+export const addAlbumPayload = album => ({
+  type: 'ADD_ALBUM',
+  payload: {
+    album
+  }
+});
+
 export const deleteAlbumPayload = album => ({
   type: 'DELETE_ALBUM',
   payload: {
@@ -38,6 +45,22 @@ export function deleteAlbum(id) {
       // ToDo 削除時のエラーハンドリングをする
       // https://github.com/akiumikin/album_with_frickr/issues/16
       location.reload();
+    }
+  };
+}
+
+export function createAlbum(name) {
+  const csrf_token = document.getElementsByName('csrf-token').item(0).content;
+  const data = {
+    name: name
+  }
+
+  return async dispatch => {
+    try {
+      const res = await request.post(`/_/albums/create`, data).set('X-CSRF-TOKEN', csrf_token);
+      dispatch(addAlbumPayload(res.body));
+    } catch (err) {
+      console.log('アルバムの作成でエラーが発生');
     }
   };
 }
