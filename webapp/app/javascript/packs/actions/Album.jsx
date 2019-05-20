@@ -67,10 +67,11 @@ export function deleteAlbum(id) {
   };
 }
 
-export function createAlbum(name) {
+export function createAlbum(name, urls = []) {
   const csrf_token = document.getElementsByName('csrf-token').item(0).content;
   const data = {
-    name: name
+    name: name,
+    urls: urls
   }
 
   return async dispatch => {

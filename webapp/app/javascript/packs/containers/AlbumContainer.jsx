@@ -15,9 +15,6 @@ function mapDispatchToProps(dispatch) {
     },
     deleteAlbum(id) {
       dispatch(deleteAlbum(id));
-    },
-    createAlbum(name) {
-      dispatch(createAlbum(name));
     }
   };
 }
