@@ -35,6 +35,22 @@ class AlbumsController < ApplicationController
     render json: @album
   end
 
+  # PUT /albums/1
+  # PUT /albums/1.json
+  def update
+    ActiveRecord::Base.transaction do
+      @album.update!(name: params[:name])
+      @album.album_images.destroy_all
+      # ToDo 更新がn+1になっているのでactiverecord importを入れて修正する
+      # https://github.com/zdennis/activerecord-import
+      params[:urls].each do |image_url|
+        AlbumImage.create!(album_id: @album.id, url: image_url)
+      end
+    end
+
+    render json: @album
+  end
+
   # DELETE /albums/1
   # DELETE /albums/1.json
   def destroy
@@ -58,19 +74,5 @@ class AlbumsController < ApplicationController
 
   # GET /albums/1/edit
   def edit
-  end
-
-  # PATCH/PUT /albums/1
-  # PATCH/PUT /albums/1.json
-  def update
-    respond_to do |format|
-      if @album.update(album_params)
-        format.html { redirect_to @album, notice: 'Album was successfully updated.' }
-        format.json { render :show, status: :ok, location: @album }
-      else
-        format.html { render :edit }
-        format.json { render json: @album.errors, status: :unprocessable_entity }
-      end
-    end
   end
 end

@@ -21,6 +21,10 @@ export default class Album extends Component {
     location.href=`/${id}`;
   }
 
+  moveToEdit(id) {
+    location.href=`/edit/${id}`;
+  }
+
   moveToAlbumNew() {
     location.href=`/new`;
   }
@@ -45,11 +49,11 @@ export default class Album extends Component {
             詳細
           </button>
         </td>
-        {/* <td>
-          <button onClick={() => this.moveToDetail(album.id)} className="c-btn__base">
+        <td>
+          <button onClick={() => this.moveToEdit(album.id)} className="c-btn__base">
             編集
           </button>
-        </td> */}
+        </td>
         <td>
           {/* ToDo 削除確認をするポップアップかモーダルを設定する */}
           {/* https://github.com/akiumikin/album_with_frickr/issues/15 */}

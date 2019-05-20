@@ -16,10 +16,15 @@ export default function Reducer(state = initialState, action) {
         album: action.payload.album
       };
     case 'DELETE_ALBUM':
-      return {albums: state.albums.filter(album => album.id != action.payload.album.id)};
+      return {
+        ...state,
+        albums: state.albums.filter(album => album.id != action.payload.album.id)
+      };
     case 'ADD_ALBUM':
-      return {albums: state.albums.concat(action.payload.album)}
-    // ToDo Imageに関してはテーブルも異なるので規模が大きくなってきたらファイルを分ける構成にする
+      return {
+        ...state,
+        albums: state.albums.concat(action.payload.album)
+      }
     case 'DELETE_IMAGE':
       return {
         ...state, 
