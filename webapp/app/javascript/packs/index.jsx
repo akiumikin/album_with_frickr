@@ -3,11 +3,12 @@ import { render } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import AlbumReducer from './reducers/AlbumReducer';
+import AlbumReducer from './reducers/Reducer';
 import AlbumContainer from './containers/AlbumContainer';
+import AlbumNewContainer from './containers/AlbumNewContainer';
 import AlbumShowContainer from './containers/AlbumShowContainer';
 
-import { BrowserRouter, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 const store = createStore(
   AlbumReducer,
@@ -18,10 +19,11 @@ const store = createStore(
 // 
 const App = () => (
   <BrowserRouter>
-    <div>
+    <Switch>
       <Route exact path='/' component={AlbumContainer} />
+      <Route path='/new' component={AlbumNewContainer} />
       <Route path='/:id' component={AlbumShowContainer} />
-    </div>
+    </Switch>
   </BrowserRouter>
 )
 

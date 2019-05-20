@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import Swiper from "react-id-swiper";
+import "react-id-swiper/src/styles/css/swiper.css";
+
 export default class Album extends Component {
   constructor() {
     super();
-    this.state = {name: ''};
   }
 
   componentDidMount() {
@@ -15,16 +17,12 @@ export default class Album extends Component {
     this.props.deleteAlbum(id);
   }
 
-  albumCreate(name) {
-    this.props.createAlbum(name)
-  }
-
-  onChangeAlbumName(event) {
-    this.setState({name: event.target.value})
-  }
-
   moveToDetail(id) {
     location.href=`/${id}`;
+  }
+
+  moveToAlbumNew() {
+    location.href=`/new`;
   }
 
   albumList() {
@@ -35,6 +33,7 @@ export default class Album extends Component {
 
     return albumList
   }
+
 
   albumRow(album) {
     return (
@@ -63,6 +62,15 @@ export default class Album extends Component {
   }
 
   render() {
+    const params = {
+      slidesPerView: 3,
+      spaceBetween: 30,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      }
+    }
+
     return (
       <div className="c-container">
         <section className="c-container__wrap">
@@ -85,16 +93,8 @@ export default class Album extends Component {
             </table>
           </div>
           <div>
-            <div>
-              アルバム名：
-              <input
-                type='text'
-                value={this.state.name}
-                onChange={(event => this.onChangeAlbumName(event))}
-              />
-            </div>
-            <button onClick={() => this.albumCreate(this.state.name)} className="c-btn__base">
-              アルバム作成
+            <button onClick={() => this.moveToAlbumNew()} className="c-btn__base">
+              アルバム新規作成
             </button>
           </div>
         </section>

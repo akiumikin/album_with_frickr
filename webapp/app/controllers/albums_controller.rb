@@ -23,7 +23,15 @@ class AlbumsController < ApplicationController
   # POST /albums
   # POST /albums.json
   def create
-    @album = Album.create!(album_params)
+    ActiveRecord::Base.transaction do
+      @album = Album.create!(album_params)
+      # ToDo 更新がn+1になっているのでactiverecord importを入れて修正する
+      # https://github.com/zdennis/activerecord-import
+      params[:urls].each do |image_url|
+        AlbumImage.create!(album_id: @album.id, url: image_url)
+      end
+    end
+
     render json: @album
   end
 

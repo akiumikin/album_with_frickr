@@ -1,5 +1,6 @@
 const initialState = {
   albums: [],
+  ficker_images: []
 };
 
 export default function Reducer(state = initialState, action) {
@@ -18,7 +19,7 @@ export default function Reducer(state = initialState, action) {
       return {albums: state.albums.filter(album => album.id != action.payload.album.id)};
     case 'ADD_ALBUM':
       return {albums: state.albums.concat(action.payload.album)}
-      // ToDo Imageに関してはテーブルも異なるので規模が大きくなってきたらファイルを分ける構成にする
+    // ToDo Imageに関してはテーブルも異なるので規模が大きくなってきたらファイルを分ける構成にする
     case 'DELETE_IMAGE':
       return {
         ...state, 
@@ -27,6 +28,11 @@ export default function Reducer(state = initialState, action) {
           album_images: state.album.album_images.filter(image => image.id != action.payload.image.id)
         }
       }
+    case 'SET_FICKER_IMAGES':
+      return {
+        ...state,
+        ficker_images: action.payload.images.filter(image => image.url_h)
+      };
     default:
       return state;
   }
