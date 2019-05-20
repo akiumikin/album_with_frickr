@@ -67,7 +67,7 @@ export function deleteAlbum(id) {
   };
 }
 
-export function createAlbum(name, urls = []) {
+export function albumCreateOrUpdate(type, name, urls = [], id) {
   const csrf_token = document.getElementsByName('csrf-token').item(0).content;
   const data = {
     name: name,
@@ -76,10 +76,15 @@ export function createAlbum(name, urls = []) {
 
   return async dispatch => {
     try {
-      const res = await request.post(`/_/albums/create`, data).set('X-CSRF-TOKEN', csrf_token);
-      dispatch(addAlbumPayload(res.body));
+      if (type == 'create') {
+        const res = await request.post(`/_/albums/create`, data).set('X-CSRF-TOKEN', csrf_token);
+        dispatch(addAlbumPayload(res.body));
+      } else {
+        const res = await request.put(`/_/albums/${id}`, data).set('X-CSRF-TOKEN', csrf_token);
+        despatch(updateAlbumPayload(res.body))
+      }
     } catch (err) {
-      console.log('アルバムの作成でエラーが発生');
+      console.log(`アルバムの${type == 'create' ? '作成' : '更新'}でエラーが発生`);
     }
   };
 }

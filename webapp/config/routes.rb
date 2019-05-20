@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/_/albums/list', to: 'albums#list'
   post '/_/albums/create', to: 'albums#create'
   get '/_/albums/:id', to: 'albums#show'
+  put '/_/albums/:id', to: 'albums#update'
   delete '/_/albums/:id', to: 'albums#destroy'
 
   # album_images
