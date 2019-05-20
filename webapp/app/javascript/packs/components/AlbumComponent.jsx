@@ -1,26 +1,32 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import Swiper from "react-id-swiper";
+import "react-id-swiper/src/styles/css/swiper.css";
+
 export default class Album extends Component {
   constructor() {
     super();
-    this.state = {name: ''};
   }
 
   componentDidMount() {
-    this.props.getAlbum();
+    this.props.getAlbums();
   }
 
   albumDelete(id) {
     this.props.deleteAlbum(id);
   }
 
-  albumCreate(name) {
-    this.props.createAlbum(name)
+  moveToDetail(id) {
+    location.href=`/${id}`;
   }
 
-  onChangeAlbumName(event) {
-    this.setState({name: event.target.value})
+  moveToEdit(id) {
+    location.href=`/edit/${id}`;
+  }
+
+  moveToAlbumNew() {
+    location.href=`/new`;
   }
 
   albumList() {
@@ -32,11 +38,22 @@ export default class Album extends Component {
     return albumList
   }
 
+
   albumRow(album) {
     return (
       <tr key={album.id} className="p-detailTable__underLine">
         <td>{album.id}</td>
         <td>{album.name}</td>
+        <td>
+          <button onClick={() => this.moveToDetail(album.id)} className="c-btn__base">
+            詳細
+          </button>
+        </td>
+        <td>
+          <button onClick={() => this.moveToEdit(album.id)} className="c-btn__base">
+            編集
+          </button>
+        </td>
         <td>
           {/* ToDo 削除確認をするポップアップかモーダルを設定する */}
           {/* https://github.com/akiumikin/album_with_frickr/issues/15 */}
@@ -49,6 +66,15 @@ export default class Album extends Component {
   }
 
   render() {
+    const params = {
+      slidesPerView: 3,
+      spaceBetween: 30,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      }
+    }
+
     return (
       <div className="c-container">
         <section className="c-container__wrap">
@@ -71,16 +97,8 @@ export default class Album extends Component {
             </table>
           </div>
           <div>
-            <div>
-              アルバム名：
-              <input
-                type='text'
-                value={this.state.name}
-                onChange={(event => this.onChangeAlbumName(event))}
-              />
-            </div>
-            <button onClick={() => this.albumCreate(this.state.name)} className="c-btn__base">
-              アルバム作成
+            <button onClick={() => this.moveToAlbumNew()} className="c-btn__base">
+              アルバム新規作成
             </button>
           </div>
         </section>

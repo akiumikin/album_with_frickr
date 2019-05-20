@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import Album from '../components/AlbumMainComponent';
-import { getAlbum, deleteAlbum, createAlbum } from '../actions/Album';
+import Album from '../components/AlbumComponent';
+import { getAlbums, deleteAlbum, createAlbum } from '../actions/Album';
 
 function mapStateToProps(state) {
   return {
@@ -10,14 +10,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getAlbum() {
-      dispatch(getAlbum());
+    getAlbums() {
+      dispatch(getAlbums());
     },
     deleteAlbum(id) {
       dispatch(deleteAlbum(id));
-    },
-    createAlbum(name) {
-      dispatch(createAlbum(name));
     }
   };
 }

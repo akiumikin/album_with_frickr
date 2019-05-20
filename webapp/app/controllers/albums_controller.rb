@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  before_action :set_album, only: [:show, :edit, :update, :destroy]
+  before_action :set_album, only: [:edit, :update, :destroy]
 
   # GET /albums
   # GET /albums.json
@@ -11,10 +11,43 @@ class AlbumsController < ApplicationController
     render json: Album.all
   end
 
+  # GET /albums/1
+  # GET /albums/1.json
+  def show
+    album = Album.includes(:album_images).find(params[:id])
+    return_hash = album.attributes
+    return_hash['album_images'] = album.album_images
+    render json: return_hash
+  end
+
   # POST /albums
   # POST /albums.json
   def create
-    @album = Album.create!(album_params)
+    ActiveRecord::Base.transaction do
+      @album = Album.create!(album_params)
+      # ToDo 更新がn+1になっているのでactiverecord importを入れて修正する
+      # https://github.com/zdennis/activerecord-import
+      params[:urls].each do |image_url|
+        AlbumImage.create!(album_id: @album.id, url: image_url)
+      end
+    end
+
+    render json: @album
+  end
+
+  # PUT /albums/1
+  # PUT /albums/1.json
+  def update
+    ActiveRecord::Base.transaction do
+      @album.update!(name: params[:name])
+      @album.album_images.destroy_all
+      # ToDo 更新がn+1になっているのでactiverecord importを入れて修正する
+      # https://github.com/zdennis/activerecord-import
+      params[:urls].each do |image_url|
+        AlbumImage.create!(album_id: @album.id, url: image_url)
+      end
+    end
+
     render json: @album
   end
 
@@ -39,26 +72,7 @@ class AlbumsController < ApplicationController
 
   # ↓未使用（これから使う）
 
-  # GET /albums/1
-  # GET /albums/1.json
-  def show
-  end
-
   # GET /albums/1/edit
   def edit
-  end
-
-  # PATCH/PUT /albums/1
-  # PATCH/PUT /albums/1.json
-  def update
-    respond_to do |format|
-      if @album.update(album_params)
-        format.html { redirect_to @album, notice: 'Album was successfully updated.' }
-        format.json { render :show, status: :ok, location: @album }
-      else
-        format.html { render :edit }
-        format.json { render json: @album.errors, status: :unprocessable_entity }
-      end
-    end
   end
 end
