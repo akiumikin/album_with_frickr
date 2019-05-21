@@ -51,8 +51,6 @@ export default class Album extends Component {
           </button>
         </td>
         <td>
-          {/* ToDo 削除確認をするポップアップかモーダルを設定する */}
-          {/* https://github.com/akiumikin/album_with_frickr/issues/15 */}
           <button onClick={() => this.albumDelete(album.id)} className="btn__base">
             ×
           </button>
@@ -74,8 +72,7 @@ export default class Album extends Component {
               <tr className="detailTable__head">
                 <th>id</th>
                 <th>名前</th>
-                  {/* 下の１行は削除枠を確保のため */}
-                  <th></th>   
+                <th></th>   
               </tr>
               </thead>
               <tbody>
@@ -95,7 +92,5 @@ export default class Album extends Component {
 }
 
 Album.propTypes = {
-  // ToDo arrayの中身の型定義
-  // https://github.com/akiumikin/album_with_frickr/issues/10
   albums: PropTypes.array,
 };
