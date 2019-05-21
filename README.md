@@ -27,13 +27,15 @@ npm 6.4.1
 ### 環境立ち上げ
 
 ・Dockerfileとdocker-compose.ymlを用意する（リポジトリ内を参照）
+・docker-compose up -d　で立ち上げる
+（初回起動時にはライブラリ引いてくるのに時間がかかるのでattachして経過を観察しておくと良い）
 
 ```
 起動：docker-compose up -d
 （仮にメインプロセスを落としたらもう一回する）
 停止：docker-compose down
+attach：docker attach <名称>
+コンテナに入る：docker exec -ti <名称>　/bin/bash
 
 attachから抜ける：ctrl+pの後にctrl+c
 ```
-
-・初めの起動時にはmountしたディレクトリにnode_moduleがいないから、node_module入れるところは必要かも
