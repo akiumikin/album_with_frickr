@@ -83,6 +83,13 @@ export function albumCreateOrUpdate(type, name, urls = [], id) {
         const res = await request.put(`/_/albums/${id}`, data).set('X-CSRF-TOKEN', csrf_token);
         despatch(updateAlbumPayload(res.body))
       }
+
+      // 連続して登録することは想定せずアルバム一覧か詳細に遷移させる
+      if (id) {
+        location.href=`/${id}`;
+      } else {
+        location.href='/';
+      }
     } catch (err) {
       console.log(`アルバムの${type == 'create' ? '作成' : '更新'}でエラーが発生`);
     }
