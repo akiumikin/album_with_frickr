@@ -7,7 +7,6 @@ import Reducer from './reducers/Reducer';
 import AlbumContainer from './containers/AlbumContainer';
 import AlbumFormSelectContainer from './containers/AlbumFormSelectContainer';
 import AlbumShowContainer from './containers/AlbumShowContainer';
-
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 const store = createStore(
@@ -15,8 +14,6 @@ const store = createStore(
   applyMiddleware(thunk)
 );
 
-// ToDo routingをindex.jsと分離する
-// https://github.com/akiumikin/album_with_frickr/issues/36
 const App = () => (
   <BrowserRouter>
     <Switch>

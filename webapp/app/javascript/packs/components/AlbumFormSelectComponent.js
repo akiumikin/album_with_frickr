@@ -49,8 +49,6 @@ export default class Album extends Component {
 }
 
 Album.propTypes = {
-  // ToDo arrayの中身の型定義
-  // https://github.com/akiumikin/album_with_frickr/issues/10
   ficker_images: PropTypes.array,
   album: PropTypes.object,
 };

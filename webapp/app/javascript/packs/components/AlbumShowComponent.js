@@ -28,8 +28,6 @@ export default class AlbumShow extends Component {
     return (
       <div key={image.id} className="detailTable_div">
         <img src={image.url} width='350px'/>
-        {/* ToDo 削除確認をするポップアップかモーダルを設定する */}
-        {/* https://github.com/akiumikin/album_with_frickr/issues/15 */}
         <button onClick={() => this.imageDelete(image.id)} className="btn__base">
           ×
         </button>
