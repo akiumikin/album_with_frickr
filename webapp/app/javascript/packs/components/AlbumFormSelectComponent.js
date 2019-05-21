@@ -4,12 +4,8 @@ import PropTypes from 'prop-types';
 import Form from './AlbumFormComponent';
 
 export default class Album extends Component {
-  constructor(props) {
+  constructor() {
     super();
-    this.state = {
-      name: '',
-      image_urls: props.ficker_images
-    };
   }
 
   componentDidMount() {
