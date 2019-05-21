@@ -1,3 +1,4 @@
+import PNotify from 'pnotify/dist/es/PNotify';
 const request = require('superagent');
 
 export const deleteAlbumImagePayload = image => ({
@@ -15,11 +16,7 @@ export function deleteAlbumImage(id) {
       const res = await request.delete(`/_/album_images/${id}`).set('X-CSRF-TOKEN', csrf_token);
       dispatch(deleteAlbumImagePayload(res.body));
     } catch (err) {
-      console.log('アルバム内の画像の削除でエラーが発生');
-
-      // ToDo 削除時のエラーハンドリングをする
-      // https://github.com/akiumikin/album_with_frickr/issues/16
-      location.reload();
+      PNotify.alert(`アルバム内の画像の削除でエラーが発生しました\n別タブなどで削除済みでないか確認ください`);
     }
   };
 }
