@@ -1,3 +1,4 @@
+import PNotify from 'pnotify/dist/es/PNotify';
 const request = require('superagent');
 // ToDo 処理をサーバーサイドに回してkeyをクライアントサイドに見せないようにすべき
 // https://github.com/akiumikin/album_with_frickr/issues/35
@@ -24,7 +25,7 @@ export function getFickerImages() {
       const res = await request.get('https://api.flickr.com/services/rest', data);
       dispatch(setFickerImagesPayload(res.body.photos.photo));
     } catch (err) {
-      console.log(`Fickerの画像の取得でエラーが発生`)
+      PNotify.alert(`Fickerの画像の取得でエラーが発生`)
     }
   };
 }

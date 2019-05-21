@@ -1,3 +1,4 @@
+import PNotify from 'pnotify/dist/es/PNotify';
 const request = require('superagent');
 
 export const setAlbumsPayload = albums => ({
@@ -34,7 +35,7 @@ export function getAlbums() {
       const res = await request.get('/_/albums/list');
       dispatch(setAlbumsPayload(res.body));
     } catch (err) {
-      console.log('アルバム一覧の取得でエラーが発生')
+      PNotify.alert('アルバム一覧の取得でエラーが発生')
     }
   };
 }
@@ -45,7 +46,7 @@ export function getAlbum(id) {
       const res = await request.get(`/_/albums/${id}`);
       dispatch(setAlbumPayload(res.body));
     } catch (err) {
-      console.log(`ID:${id} のアルバムの取得でエラーが発生`)
+      PNotify.alert(`ID:${id} のアルバムの取得でエラーが発生`)
     }
   };
 }
@@ -58,11 +59,7 @@ export function deleteAlbum(id) {
       const res = await request.delete(`/_/albums/${id}`).set('X-CSRF-TOKEN', csrf_token);
       dispatch(deleteAlbumPayload(res.body));
     } catch (err) {
-      console.log('アルバムの削除でエラーが発生');
-
-      // ToDo 削除時のエラーハンドリングをする
-      // https://github.com/akiumikin/album_with_frickr/issues/16
-      location.reload();
+      PNotify.alert(`アルバムの削除でエラーが発生しました\n別タブなどで削除済みでないか確認ください`);
     }
   };
 }
@@ -81,7 +78,7 @@ export function albumCreateOrUpdate(type, name, urls = [], id) {
         dispatch(addAlbumPayload(res.body));
       } else {
         const res = await request.put(`/_/albums/${id}`, data).set('X-CSRF-TOKEN', csrf_token);
-        despatch(updateAlbumPayload(res.body))
+        dispatch(setAlbumPayload(res.body))
       }
 
       // 連続して登録することは想定せずアルバム一覧か詳細に遷移させる
@@ -91,7 +88,7 @@ export function albumCreateOrUpdate(type, name, urls = [], id) {
         location.href='/';
       }
     } catch (err) {
-      console.log(`アルバムの${type == 'create' ? '作成' : '更新'}でエラーが発生`);
+      PNotify.alert(`アルバムの${type == 'create' ? '作成' : '更新'}でエラーが発生`);
     }
   };
 }
