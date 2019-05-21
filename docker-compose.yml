@@ -31,7 +31,7 @@ services:
     # :の左がhost（album_with_ficker）、右がコンテナ内、なのでwebapp以下を指定する必要があるので注意
     volumes:
       - ./webapp/:/usr/local/src
-    # command: "bash -c 'bundle && bin/rails db:migrate && bundle exec rails server'"
+    command: "npm run webpack-dev-server"
   mysql:
     image: mysql:5.7
     container_name: mysql
