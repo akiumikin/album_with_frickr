@@ -15,6 +15,10 @@ export default class AlbumShow extends Component {
     this.props.deleteImage(image_id);
   }
 
+  moveToIndex() {
+    location.href='/';
+  }
+
   imageList() {
     const images = this.props.album && this.props.album.album_images || [];
     const imageList = images.map((image) =>
@@ -41,6 +45,9 @@ export default class AlbumShow extends Component {
         <section className="container__wrap">
           <div className="header">
             <h2 className="heading">アルバム詳細</h2>
+            <button onClick={() => this.moveToIndex()} className="btn__base">
+              一覧に戻る
+            </button>
           </div>
           <h3>アルバム名：{this.props.album && this.props.album.name}</h3>
           <div>{this.imageList()}</div>
