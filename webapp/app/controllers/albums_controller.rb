@@ -25,7 +25,7 @@ class AlbumsController < ApplicationController
   def create
     ActiveRecord::Base.transaction do
       @album = Album.create!(album_params)
-      # ToDo 更新がn+1になっているのでactiverecord importを入れて修正する
+      # 画像登録数が多くなるUIになったらSQLの負荷を減らすためにactiverecord-importを入れる
       # https://github.com/zdennis/activerecord-import
       params[:urls].each do |image_url|
         AlbumImage.create!(album_id: @album.id, url: image_url)
@@ -41,7 +41,7 @@ class AlbumsController < ApplicationController
     ActiveRecord::Base.transaction do
       @album.update!(name: params[:name])
       @album.album_images.destroy_all
-      # ToDo 更新がn+1になっているのでactiverecord importを入れて修正する
+      # 画像登録数が多くなるUIになったらSQLの負荷を減らすためにactiverecord-importを入れる
       # https://github.com/zdennis/activerecord-import
       params[:urls].each do |image_url|
         AlbumImage.create!(album_id: @album.id, url: image_url)
@@ -67,12 +67,5 @@ class AlbumsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def album_params
     params.require(:album).permit(:name)
-  end
-
-
-  # ↓未使用（これから使う）
-
-  # GET /albums/1/edit
-  def edit
   end
 end

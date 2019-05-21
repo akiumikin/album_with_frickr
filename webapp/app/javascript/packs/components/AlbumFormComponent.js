@@ -113,8 +113,6 @@ export default class Form extends Component {
 }
 
 Form.propTypes = {
-  // ToDo arrayの中身の型定義
-  // https://github.com/akiumikin/album_with_frickr/issues/10
   ficker_images: PropTypes.array,
   album: PropTypes.object,
   createOrUpdate: PropTypes.func
