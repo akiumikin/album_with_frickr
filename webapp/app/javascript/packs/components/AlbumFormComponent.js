@@ -74,7 +74,7 @@ export default class Form extends Component {
   imageItem(image) {
     return (
       <div key={image.url_h} onClick={() => this.onChangeAddImage(image.url_h)}>
-        <img src={image.url_h} width='350px'/>
+        <img src={image.url_h} width='300px'/>
       </div>
     );
   }
@@ -103,9 +103,9 @@ export default class Form extends Component {
           </button>
         </div>
         <div>下記のスライダーから追加したい画像をクリック</div>
-        <div>現在Swiperの調整中、一度検証窓を閉じたり開いたりしてみると動く（なぜ？）</div>
+        <div>（ドラッグアンドドロップでスワイプできる）</div>
         <div>
-          {this.imageSwiper()}
+          {this.props.ficker_images.length > 0 ? this.imageSwiper() : ''}
         </div>
       </section>
     );
