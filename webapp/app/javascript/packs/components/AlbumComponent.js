@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Swiper from "react-id-swiper";
-import "react-id-swiper/src/styles/css/swiper.css";
-
 export default class Album extends Component {
   constructor() {
     super();
@@ -38,26 +35,25 @@ export default class Album extends Component {
     return albumList
   }
 
-
   albumRow(album) {
     return (
-      <tr key={album.id} className="p-detailTable__underLine">
+      <tr key={album.id} className="detailTable__tr">
         <td>{album.id}</td>
         <td>{album.name}</td>
         <td>
-          <button onClick={() => this.moveToDetail(album.id)} className="c-btn__base">
+          <button onClick={() => this.moveToDetail(album.id)} className="btn__base">
             詳細
           </button>
         </td>
         <td>
-          <button onClick={() => this.moveToEdit(album.id)} className="c-btn__base">
+          <button onClick={() => this.moveToEdit(album.id)} className="btn__base">
             編集
           </button>
         </td>
         <td>
           {/* ToDo 削除確認をするポップアップかモーダルを設定する */}
           {/* https://github.com/akiumikin/album_with_frickr/issues/15 */}
-          <button onClick={() => this.albumDelete(album.id)} className="c-btn__base">
+          <button onClick={() => this.albumDelete(album.id)} className="btn__base">
             ×
           </button>
         </td>
@@ -66,25 +62,16 @@ export default class Album extends Component {
   }
 
   render() {
-    const params = {
-      slidesPerView: 3,
-      spaceBetween: 30,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      }
-    }
-
     return (
-      <div className="c-container">
-        <section className="c-container__wrap">
-          <div className="p-header">
-            <h2 className="c-heading">アルバム一覧</h2>
+      <div className="container">
+        <section className="container__wrap">
+          <div className="header">
+            <h2 className="heading">アルバム一覧</h2>
           </div>
           <div>
-            <table className="p-detailTable">
+            <table className="detailTable">
               <thead>
-              <tr className="p-detailTable__head">
+              <tr className="detailTable__head">
                 <th>id</th>
                 <th>名前</th>
                   {/* 下の１行は削除枠を確保のため */}
@@ -97,7 +84,7 @@ export default class Album extends Component {
             </table>
           </div>
           <div>
-            <button onClick={() => this.moveToAlbumNew()} className="c-btn__base">
+            <button onClick={() => this.moveToAlbumNew()} className="btn__base">
               アルバム新規作成
             </button>
           </div>
