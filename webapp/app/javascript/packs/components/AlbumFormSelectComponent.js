@@ -48,7 +48,7 @@ export default class Album extends Component {
 
   render() {
     return (
-      <div className="c-container">
+      <div className="container">
         {this.select_form_create_or_update()}
       </div>
     );

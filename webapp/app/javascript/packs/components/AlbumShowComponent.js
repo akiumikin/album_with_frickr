@@ -26,11 +26,11 @@ export default class AlbumShow extends Component {
 
   imageRow(image) {
     return (
-      <div key={image.id} className="p-detailTable__underLine">
+      <div key={image.id} className="detailTable_div">
         <img src={image.url} width='350px'/>
         {/* ToDo 削除確認をするポップアップかモーダルを設定する */}
         {/* https://github.com/akiumikin/album_with_frickr/issues/15 */}
-        <button onClick={() => this.imageDelete(image.id)} className="c-btn__base">
+        <button onClick={() => this.imageDelete(image.id)} className="btn__base">
           ×
         </button>
       </div>
@@ -39,13 +39,12 @@ export default class AlbumShow extends Component {
 
   render() {
     return (
-      <div className="c-container">
-        <section className="c-container__wrap">
-          <div className="p-header">
-            <h2 className="c-heading">アルバム詳細</h2>
+      <div className="container">
+        <section className="container__wrap">
+          <div className="header">
+            <h2 className="heading">アルバム詳細</h2>
           </div>
           <h3>アルバム名：{this.props.album && this.props.album.name}</h3>
-          {/* ToDo スライダーを使うようにする */}
           <div>{this.imageList()}</div>
         </section>
       </div>

@@ -16,7 +16,7 @@ const store = createStore(
 );
 
 // ToDo routingをindex.jsと分離する
-// 
+// https://github.com/akiumikin/album_with_frickr/issues/36
 const App = () => (
   <BrowserRouter>
     <Switch>

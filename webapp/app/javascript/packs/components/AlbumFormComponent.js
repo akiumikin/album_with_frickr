@@ -81,9 +81,9 @@ export default class Form extends Component {
 
   render() {
     return (
-      <section className="c-container__wrap">
-        <div className="p-header">
-          <h2 className="c-heading">アルバム{this.props.type == 'create' ? '作成' : '更新'}</h2>
+      <section className="container__wrap">
+        <div className="header">
+          <h2 className="heading">アルバム{this.props.type == 'create' ? '作成' : '更新'}</h2>
         </div>
         <div>
           <div>
@@ -98,7 +98,7 @@ export default class Form extends Component {
             画像：
             {this.imageList()}
           </div>
-          <button onClick={() => this.albumCreateOrUpdate(this.state.name)} className="c-btn__base">
+          <button onClick={() => this.albumCreateOrUpdate(this.state.name)} className="btn__base">
             アルバムを{this.props.type == 'create' ? '作成' : '更新'}
           </button>
         </div>
