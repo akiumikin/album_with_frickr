@@ -37,13 +37,6 @@ export default class Album extends Component {
   albumCreateOrUpdate(type, name, urls) {
     const id = this.props.match.params.id
     this.props.createOrUpdateAlbum(type, name, urls, id);
-
-    // 登録後にこの画面に残る意味がないのでアルバム一覧またはアルバム詳細に遷移
-    if (id) {
-      location.href=`/${id}`;
-    } else {
-      location.href='/';
-    }
   }
 
   render() {
