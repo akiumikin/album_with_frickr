@@ -4,7 +4,7 @@
 
 ・Dockerfileとdocker-compose.ymlを用意する（リポジトリ内を参照）  
 ・docker-compose up -d　で立ち上げる  
-（初回起動時にはライブラリ引いてくるのに時間がかかるのでattachして経過を観察しておくと良い）  
+（初回起動時にはイメージ作成やbundle, npm iなど結構時間かかるので注意）  
 
 ```
 起動：docker-compose up -d
