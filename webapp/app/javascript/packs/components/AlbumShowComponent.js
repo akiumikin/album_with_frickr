@@ -44,8 +44,8 @@ export default class AlbumShow extends Component {
       <div className="container">
         <section className="container__wrap">
           <div className="header">
-            <h2 className="heading">アルバム詳細</h2>
-            <button onClick={() => this.moveToIndex()} className="btn__base">
+            <h2 style={{display: 'inline-block'}} className="heading">アルバム詳細</h2>
+            <button style={{marginLeft: '20px'}} onClick={() => this.moveToIndex()} className="btn__base">
               一覧に戻る
             </button>
           </div>
