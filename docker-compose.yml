@@ -12,7 +12,6 @@ services:
       RAILS_ENV: development
     depends_on:
       - mysql
-      - webpack
     # :の左がhost（album_with_ficker）、右がコンテナ内、なのでwebapp以下を指定する必要があるので注意
     volumes:
       - ./webapp/:/usr/local/src
@@ -26,12 +25,10 @@ services:
     ports:
       - "3500:3500"
     environment: {}
-    depends_on:
-      - mysql
     # :の左がhost（album_with_ficker）、右がコンテナ内、なのでwebapp以下を指定する必要があるので注意
     volumes:
       - ./webapp/:/usr/local/src
-    command: "npm run webpack-dev-server"
+    command: "bash -c 'npm i && npm run webpack-dev-server'"
   mysql:
     image: mysql:5.7
     container_name: mysql
