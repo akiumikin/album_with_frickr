@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Album from '../components/AlbumComponent';
-import { getAlbums, deleteAlbum, createAlbum } from '../actions/Album';
+import { getAlbums, deleteAlbum } from '../actions/Album';
 
 function mapStateToProps(state) {
   return {
