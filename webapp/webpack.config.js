@@ -4,6 +4,7 @@ module.exports = {
     path: __dirname + 'public/static/webpack', //ビルドしたファイルを吐き出す場所
     filename: '[name].js' //ビルドした後のファイル名
   },
+  devtool: '#inline-source-map',
   module: {
     rules: [
       {
