@@ -2,7 +2,7 @@ version: '3.7'
 services:
   app:
     build: .
-    image: myapp:0.8
+    image: myapp:1.07
     container_name: app
     tty: true
     stdin_open: true
