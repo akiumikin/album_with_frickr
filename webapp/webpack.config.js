@@ -1,5 +1,6 @@
 module.exports = {
-  entry: __dirname + "/app/javascript/packs/index.js",
+  // redux構成、graph-ql構成を切り替える場合にはpacks/xxx/index.jsのxxxを変更する
+  entry: __dirname + "/app/javascript/packs/redux/index.js",
   output: {
     path: __dirname + 'public/static/webpack', //ビルドしたファイルを吐き出す場所
     filename: '[name].js' //ビルドした後のファイル名
