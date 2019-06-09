@@ -1,4 +1,7 @@
 class Types::AlbumType < Types::BaseObject
+  model Album
+  preload %i[album_images]
+
   field :id,           ID,                      null: false
   field :name,         String,                  null: false
   field :created_at,   String,                  null: true
