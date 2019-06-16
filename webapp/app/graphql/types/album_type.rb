@@ -1,6 +1,12 @@
 class Types::AlbumType < Types::BaseObject
-  model Album
-  preload %i[album_images]
+  # base_object.rbのようにメタプロしてあげると↓みたいにもかける
+  # 一般的な使い方に慣れたいのでコメントアウト
+  # model Album
+  # preload %i[album_images]
+
+  def album_images
+    AssociationLoader.for(Album, :album_images).load(object)
+  end
 
   field :id,           ID,                      null: false
   field :name,         String,                  null: false
